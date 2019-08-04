@@ -1,0 +1,10 @@
+bin/
+
+# Cmake intermediate files
+CMakeFiles/
+CMakeCache.txt
+Makefile
+
+.vscode/
+
+
