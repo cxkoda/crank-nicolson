@@ -1,4 +1,5 @@
 # Crank-Nicolson with DevOps
+[![Build Status](https://travis-ci.org/cxkoda/crank-nicolson.svg?branch=master)](https://travis-ci.org/cxkoda/crank-nicolson)
 
 This project is a demonstration implementation of a Crank-Nicolson scheme to solve a basic diffusion equation in one dimension.
 
