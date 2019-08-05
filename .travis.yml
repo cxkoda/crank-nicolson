@@ -1,0 +1,14 @@
+language: cpp
+
+compiler:
+  - gcc
+
+before_script:
+  - mkdir -p build
+  - cd build
+  - cmake ..
+
+script:
+  - gcc --version
+  - make
+  - ctest
