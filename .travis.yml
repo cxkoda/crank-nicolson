@@ -16,4 +16,4 @@ before_script:
 script:
   - gcc --version
   - make
-  - ctest
+  - ctest -V
