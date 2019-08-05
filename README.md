@@ -9,4 +9,6 @@ It's purpose was to exercise common DevOps such as
 * Unit-testing using gtest
 * CI using Travis
 
-And to act as a lookup project for future ones. 
+and to act as a lookup project for future ones.
+
+Be aware that everything is still *work in progress*! 
