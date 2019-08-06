@@ -41,3 +41,16 @@ TEST(GridTest, LinearGridRimCenters) {
   EXPECT_EQ(1.25, grid.xC(2));
   EXPECT_EQ(1.75, grid.xC(3));
 }
+
+TEST(GridTest, CellWidth) {
+  Grid1D grid = Grid1D::newLinear(0, 0.2, 1, 1);
+  EXPECT_DOUBLE_EQ(0.2, grid.cellWidth(-1));
+  EXPECT_DOUBLE_EQ(0.2, grid.cellWidth(0));
+  EXPECT_DOUBLE_EQ(0.2, grid.cellWidth(1));
+}
+
+TEST(GridTest, CellDistance) {
+  Grid1D grid = Grid1D::newLinear(0, 0.3, 1, 1);
+  EXPECT_DOUBLE_EQ(0.3, grid.cellDistance(-1));
+  EXPECT_DOUBLE_EQ(0.3, grid.cellDistance(0));
+}

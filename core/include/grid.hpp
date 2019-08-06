@@ -15,10 +15,21 @@ class Grid1D {
 
   /** get the left cell edge of a given cell */
   double xL(int ix) const;
+
+  /** get the cell width */
+  double cellWidth(int ix) const;
+
+  /** get the difference between two cell centers ix, ix+1 */
+  double cellDistance(int ix) const;
+
+  /** get the total size of the grid (incl. ghost cells) */
   int size() const;
 
  private:
   int nCells, nRim;
   array_type cellEdges;
   array_type cellCenters;
+
+  array_type dxEdges;
+  array_type dxCenters;
 };
