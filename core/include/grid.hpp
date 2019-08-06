@@ -4,10 +4,16 @@ class Grid1D {
  public:
   typedef boost::multi_array<double, 1> array_type;
 
-  static Grid1D new_linear(double xa, double xb, int nCells, int nRim);
+  /** contruct a linear grid */
+  static Grid1D newLinear(double xa, double xb, int nCells, int nRim);
+
+  /** construct a grid form given cell edges */
   Grid1D(const array_type& cellEdges, int nRim);
 
+  /** get the cell center of a given cell */
   double xC(int ix) const;
+
+  /** get the left cell edge of a given cell */
   double xL(int ix) const;
   int size() const;
 

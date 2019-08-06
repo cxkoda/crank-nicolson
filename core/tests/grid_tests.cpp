@@ -6,7 +6,7 @@ TEST(GridTest, GridConstructorBasic) {
   cellEdges[0] = 0;
   cellEdges[1] = 1;
   Grid1D grid(cellEdges, 0);
-  
+
   EXPECT_EQ(1, grid.size());
   EXPECT_EQ(0, grid.xL(0));
   EXPECT_EQ(1, grid.xL(1));
@@ -14,20 +14,20 @@ TEST(GridTest, GridConstructorBasic) {
 }
 
 TEST(GridTest, LinearGridEdges) {
-  Grid1D grid = Grid1D::new_linear(0, 1, 2, 2);
+  Grid1D grid = Grid1D::newLinear(0, 1, 2, 2);
   EXPECT_EQ(0, grid.xL(0));
   EXPECT_EQ(0.5, grid.xL(1));
   EXPECT_EQ(1, grid.xL(2));
 }
 
 TEST(GridTest, LinearGridCenters) {
-  Grid1D grid = Grid1D::new_linear(0, 1, 2, 2);
+  Grid1D grid = Grid1D::newLinear(0, 1, 2, 2);
   EXPECT_EQ(0.25, grid.xC(0));
   EXPECT_EQ(0.75, grid.xC(1));
 }
 
 TEST(GridTest, LinearGridRimEdges) {
-  Grid1D grid = Grid1D::new_linear(0, 1, 2, 2);
+  Grid1D grid = Grid1D::newLinear(0, 1, 2, 2);
   EXPECT_EQ(-1, grid.xL(-2));
   EXPECT_EQ(-0.5, grid.xL(-1));
   EXPECT_EQ(1.5, grid.xL(3));
@@ -35,7 +35,7 @@ TEST(GridTest, LinearGridRimEdges) {
 }
 
 TEST(GridTest, LinearGridRimCenters) {
-  Grid1D grid = Grid1D::new_linear(0, 1, 2, 2);
+  Grid1D grid = Grid1D::newLinear(0, 1, 2, 2);
   EXPECT_EQ(-0.75, grid.xC(-2));
   EXPECT_EQ(-0.25, grid.xC(-1));
   EXPECT_EQ(1.25, grid.xC(2));

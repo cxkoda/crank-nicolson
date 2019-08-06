@@ -21,7 +21,7 @@ Grid1D::Grid1D(const array_type& _cellEdges, int _nRim)
   cellCenters.reindex(bases);
 }
 
-Grid1D Grid1D::new_linear(double xa, double xb, int nCells, int nRim) {
+Grid1D Grid1D::newLinear(double xa, double xb, int nCells, int nRim) {
   typedef array_type::extent_range range;
   array_type cellEdges(boost::extents[range(-nRim, nCells + nRim + 1)]);
 
