@@ -1,0 +1,35 @@
+#!/bin/bash
+
+blobs=$(mktemp)
+git status --porcelain=v2 -uno > $blobs
+
+while read _ _ _ _ _ filemode oldHash newHash filename; do
+	# Skip the file if the blob was not changed
+  if [ $oldHash == $newHash ]; then
+    continue
+  fi
+  
+  # Skip the file if it is not a c++ source file
+  if [[ ! $filename =~ ^.*[.cpp|.hpp] ]]; then
+     continue
+  fi
+  
+  oldContent=$(mktemp)
+  git cat-file -p $newHash > $oldContent
+  
+  newContent=$(mktemp)
+  clang-format -style=file $oldContent > $newContent
+  
+  # Go to the next if the file was already formatted correctly
+  if cmp $oldContent $newContent; then
+    continue
+  fi
+  
+  git --no-pager diff --no-index $oldContent $newContent
+  
+  newHash2=$(git hash-object -w $newContent)
+  git update-index --add --cacheinfo $filemode $newHash2 $filename
+  
+  echo "Changed file $filename"
+  
+done < $blobs
