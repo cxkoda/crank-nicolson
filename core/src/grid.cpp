@@ -2,11 +2,25 @@
 #include <boost/array.hpp>
 #include <iostream>
 
-Grid1D::Grid1D(const array_type& _cellEdges, int _nRim) {
-  cellEdges = std::make_unique<array_type>(_cellEdges);
+Grid1D::Grid1D() {
+  cellEdges = std::make_unique<array_type>();
   cellCenters = std::make_unique<array_type>();
   dxEdges = std::make_unique<array_type>();
   dxCenters = std::make_unique<array_type>();
+}
+
+Grid1D::Grid1D(const Grid1D& o): Grid1D() {
+  nCells = o.nCells;
+  nRim = o.nRim;
+
+  cellEdges = std::make_unique<array_type>(* o.cellEdges);
+  cellCenters = std::make_unique<array_type>(* o.cellCenters);
+  dxEdges = std::make_unique<array_type>(* o.dxEdges);
+  dxCenters = std::make_unique<array_type>(* o.dxCenters);
+}
+
+Grid1D::Grid1D(const array_type& _cellEdges, int _nRim): Grid1D() {
+  cellEdges = std::make_unique<array_type>(_cellEdges);
 
   nRim = _nRim;
   nCells = cellEdges->size() - 1 - 2 * nRim;

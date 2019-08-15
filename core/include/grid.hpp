@@ -12,7 +12,7 @@ class Grid1D {
   Grid1D(const array_type& cellEdges, int nRim);
 
   /** copy constructor */
-  Grid1D(const Grid1D&) = default;
+  Grid1D(const Grid1D&);
 
   /** Move constructor */
   Grid1D(Grid1D&&) = default;
@@ -41,6 +41,10 @@ class Grid1D {
   const array_type& cellDistance() const;
 
  private:
+
+  /** Default constructor (initializes field pointers) */
+  Grid1D();
+
   int nCells, nRim;
   std::unique_ptr<array_type> cellEdges;
   std::unique_ptr<array_type> cellCenters;

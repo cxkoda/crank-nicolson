@@ -13,6 +13,17 @@ TEST(GridTest, GridConstructorBasic) {
   EXPECT_EQ(0.5, grid.xC(0));
 }
 
+TEST(GridTest, CopyConstructor) {
+  const Grid1D grid1 = Grid1D::newLinear(0,1,1,1);
+  const Grid1D grid2(grid1);
+
+  ASSERT_EQ(grid1.size(), grid2.size());
+  ASSERT_EQ(grid1.xL(), grid2.xL());
+  ASSERT_EQ(grid1.xC(), grid2.xC());
+  ASSERT_EQ(grid1.cellDistance(), grid2.cellDistance());
+  ASSERT_EQ(grid1.cellWidth(), grid2.cellWidth());
+}
+
 TEST(GridTest, LinearGridEdges) {
   Grid1D grid = Grid1D::newLinear(0, 1, 2, 2);
   EXPECT_EQ(0, grid.xL(0));
