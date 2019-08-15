@@ -2,10 +2,10 @@
 #include "grid.hpp"
 
 TEST(GridTest, GridConstructorBasic) {
-  Grid1D::array_type cellEdges_ptr(boost::extents[2]);
-  cellEdges_ptr[0] = 0;
-  cellEdges_ptr[1] = 1;
-  Grid1D grid(cellEdges_ptr, 0);
+  Grid1D::array_type cellEdges(boost::extents[2]);
+  cellEdges[0] = 0;
+  cellEdges[1] = 1;
+  Grid1D grid(cellEdges, 0);
 
   EXPECT_EQ(1, grid.size());
   EXPECT_EQ(0, grid.xL(0));
