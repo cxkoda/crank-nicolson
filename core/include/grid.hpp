@@ -1,4 +1,5 @@
 #include <boost/multi_array.hpp>
+#include <memory>
 
 class Grid1D {
  public:
@@ -9,6 +10,15 @@ class Grid1D {
 
   /** construct a grid form given cell edges */
   Grid1D(const array_type& cellEdges, int nRim);
+
+  /** copy constructor */
+  Grid1D(const Grid1D&) = default;
+
+  /** Move constructor */
+  Grid1D(Grid1D&&) = default;
+
+  /** Rvalue assignment */
+  Grid1D& operator=(Grid1D&&) = default;
 
   /** get the cell center of a given cell */
   double xC(int ix) const;
@@ -25,11 +35,16 @@ class Grid1D {
   /** get the total size of the grid (incl. ghost cells) */
   int size() const;
 
+  const array_type& xC() const;
+  const array_type& xL() const;
+  const array_type& cellWidth() const;
+  const array_type& cellDistance() const;
+
  private:
   int nCells, nRim;
-  array_type cellEdges;
-  array_type cellCenters;
+  std::unique_ptr<array_type> cellEdges;
+  std::unique_ptr<array_type> cellCenters;
 
-  array_type dxEdges;
-  array_type dxCenters;
+  std::unique_ptr<array_type> dxEdges;
+  std::unique_ptr<array_type> dxCenters;
 };
