@@ -15,17 +15,6 @@ class Grid1D {
   /** construct a grid form given cell edges */
   Grid1D(const array_type& cellEdges, int nRim);
 
-  /** copy constructor
-   * use the default implementation (which was implicitly deleted)
-   */
-  Grid1D(const Grid1D&) = default;
-
-  /** Move constructor */
-  Grid1D(Grid1D&&) = default;
-
-  /** Rvalue assignment */
-  Grid1D& operator=(Grid1D&&) = default;
-
   /** get the cell center of a given cell */
   double xC(int ix) const;
 
