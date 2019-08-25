@@ -14,7 +14,7 @@ TEST(GridTest, GridConstructorBasic) {
 }
 
 TEST(GridTest, CopyConstructor) {
-  const Grid1D grid1 = Grid1D::newLinear(0,1,1,1);
+  const Grid1D grid1 = Grid1D::newLinear(0, 1, 1, 1);
   const Grid1D grid2(grid1);
 
   ASSERT_EQ(grid1.size(), grid2.size());
@@ -82,10 +82,10 @@ TEST(GridTest, RvalueAssignment) {
   Grid1D grid1 = Grid1D::newLinear(0, 0.3, 1, 1);
   Grid1D grid2 = Grid1D::newLinear(0, 0.3, 1, 1);
   const Grid1D::array_type* cellEdges_ptr1 = &grid1.xL();
-
-  grid2 = std::move(grid1);
   const Grid1D::array_type* cellEdges_ptr2 = &grid2.xL();
 
-  ASSERT_EQ(&grid1.xL(), nullptr);
-  ASSERT_EQ(cellEdges_ptr1, cellEdges_ptr2);
+  grid2 = std::move(grid1);
+
+  ASSERT_EQ(&grid1.xL(), cellEdges_ptr2);
+  ASSERT_EQ(&grid2.xL(), cellEdges_ptr1);
 }

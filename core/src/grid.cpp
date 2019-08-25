@@ -9,17 +9,7 @@ Grid1D::Grid1D() {
   dxCenters = std::make_unique<array_type>();
 }
 
-Grid1D::Grid1D(const Grid1D& o): Grid1D() {
-  nCells = o.nCells;
-  nRim = o.nRim;
-
-  cellEdges = std::make_unique<array_type>(* o.cellEdges);
-  cellCenters = std::make_unique<array_type>(* o.cellCenters);
-  dxEdges = std::make_unique<array_type>(* o.dxEdges);
-  dxCenters = std::make_unique<array_type>(* o.dxCenters);
-}
-
-Grid1D::Grid1D(const array_type& _cellEdges, int _nRim): Grid1D() {
+Grid1D::Grid1D(const array_type& _cellEdges, int _nRim) : Grid1D() {
   cellEdges = std::make_unique<array_type>(_cellEdges);
 
   nRim = _nRim;

@@ -1,5 +1,9 @@
+#ifndef grid_hpp
+#define grid_hpp
+
 #include <boost/multi_array.hpp>
 #include <memory>
+#include "deepPtr.hpp"
 
 class Grid1D {
  public:
@@ -11,8 +15,10 @@ class Grid1D {
   /** construct a grid form given cell edges */
   Grid1D(const array_type& cellEdges, int nRim);
 
-  /** copy constructor */
-  Grid1D(const Grid1D&);
+  /** copy constructor
+   * use the default implementation (which was implicitly deleted)
+   */
+  Grid1D(const Grid1D&) = default;
 
   /** Move constructor */
   Grid1D(Grid1D&&) = default;
@@ -41,14 +47,15 @@ class Grid1D {
   const array_type& cellDistance() const;
 
  private:
-
   /** Default constructor (initializes field pointers) */
   Grid1D();
 
   int nCells, nRim;
-  std::unique_ptr<array_type> cellEdges;
-  std::unique_ptr<array_type> cellCenters;
+  DeepPtr<array_type> cellEdges;
+  DeepPtr<array_type> cellCenters;
 
-  std::unique_ptr<array_type> dxEdges;
-  std::unique_ptr<array_type> dxCenters;
+  DeepPtr<array_type> dxEdges;
+  DeepPtr<array_type> dxCenters;
 };
+
+#endif
